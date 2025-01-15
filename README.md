@@ -22,6 +22,8 @@ Este proyecto consiste en una aplicación de biblioteca digital desarrollada con
 - Listar libros clasificados por idioma.
 - Mostrar autores que estaban vivos en un año específico.
 
+  
+
 ## Estado del proyecto
 
 
@@ -52,7 +54,7 @@ Actualmente, el proyecto se encuentra concluido, pero podría haber algún tipo 
 1. Clonar este repositorio o descargar el archivo:
 
    ```bash
-   git clone <URL_DEL_REPOSITORIO>
+   https://github.com/Paulitx/LiterAlura.git
    ```
 
 2. Configurar la base de datos PostgreSQL:
