@@ -1,7 +1,7 @@
-package com.example.LiterAlura.principal.model;
+package com.example.LiterAlura.model;
 
 public enum Lenguaje {
-    Espanol("es"), Ingles("en"), Frances("fr"), Portugues("pt");
+    Español("es"), Inglés("en"), Francés("fr"), Portugués("pt");
 
     private String lenguajeDim;
 

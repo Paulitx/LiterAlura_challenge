@@ -1,8 +1,9 @@
-package com.example.LiterAlura.principal.model;
+package com.example.LiterAlura.model;
 
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "autores")
@@ -10,14 +11,14 @@ public class Autor {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long Id;
+   @Column(unique = true)
    private String nombre;
-   private int anoNacimiento;
-   private int anoFallecimiento;
+   private Integer anoNacimiento;
+   private Integer anoFallecimiento;
    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Libro> libros;
+   private List<Libro> libros;
 
     public Autor() {
-
     }
 
     public Autor(DatosAutor d) {
@@ -70,10 +71,11 @@ public class Autor {
     @Override
     public String toString() {
         return
-                "Id: " + Id +
+                "\n----------AUTOR----------" +
                 "\nNombre: " + nombre +
                 "\nAño de Nacimiento: " + anoNacimiento +
                 "\nAño de fallecimiento: " + anoFallecimiento +
-                "\nLibros: " + libros;
+                "\nLibros: " + libros.stream().map(Libro::getTitulo).collect(Collectors.joining(", ")) +
+                "\n-------------------------";
     }
 }

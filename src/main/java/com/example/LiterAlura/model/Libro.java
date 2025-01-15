@@ -1,28 +1,30 @@
-package com.example.LiterAlura.principal.model;
+package com.example.LiterAlura.model;
 
 import jakarta.persistence.*;
+
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "libros")
 public class Libro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(unique = true)
     private String titulo;
     @ManyToOne
     private Autor autor;
     @Enumerated(EnumType.STRING)
     private Lenguaje idioma;
-    private Integer numeroVentas;
+    private Integer numDescargas;
 
     public Libro() {
     }
 
     public Libro(DatosLibro d) {
         this.titulo = d.titulo();
-        this.idioma = Lenguaje.fromString(d.idioma().split(" ")[0].trim());
-        this.numeroVentas = d.numVentas();
+        this.idioma = Lenguaje.fromString(d.idioma().stream().limit(1).collect(Collectors.joining()));
+        this.numDescargas = d.numDescargas();
     }
 
     public long getId() {
@@ -49,11 +51,34 @@ public class Libro {
         this.autor = autor;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Lenguaje getIdioma() {
+        return idioma;
+    }
+
+    public void setIdioma(Lenguaje idioma) {
+        this.idioma = idioma;
+    }
+
+    public Integer getNumeroVentas() {
+        return numDescargas;
+    }
+
+    public void setNumeroVentas(Integer numDescargas) {
+        this.numDescargas = numDescargas;
+    }
+
     @Override
     public String toString() {
         return
-                "Id: " + id +
+                "\n----------LIBRO----------" +
                 "\nTitulo: " + titulo +
-                "\nAutor: " + autor;
+                "\nAutor: " + getAutor().getNombre() +
+                "\nIdioma: " + idioma +
+                "\nNumero de Descargas: " + numDescargas +
+                "\n-------------------------";
     }
 }
